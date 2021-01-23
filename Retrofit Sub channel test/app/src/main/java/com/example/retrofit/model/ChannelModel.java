@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -145,10 +147,10 @@ public class ChannelModel {
         this.additionalProperties.put(name, value);
     }
 
-//    @Override
-//    public String toString() {
-//        return new ToStringBuilder(this).append("id", id).append("name", name).append("description", description).append("createdBy", createdBy).append("timestamp", timestamp).append("subchannelCount", subchannelCount).append("videosCount", videosCount).append("parentChannel", parentChannel).append("videos", videos).append("additionalProperties", additionalProperties).toString();
-//    }
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("id", id).append("name", name).append("description", description).append("createdBy", createdBy).append("timestamp", timestamp).append("subchannelCount", subchannelCount).append("videosCount", videosCount).append("parentChannel", parentChannel).append("videos", videos).append("additionalProperties", additionalProperties).toString();
+    }
 
 }
 
