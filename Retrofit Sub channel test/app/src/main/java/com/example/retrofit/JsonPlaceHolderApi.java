@@ -44,7 +44,7 @@ public interface JsonPlaceHolderApi {
     Call<Post> createPost(@FieldMap Map<String, String> fields);
 
     @GET("/api/v1/channels/details")
-    Call<ChannelModel> channelResponse(
+    Call<List<ChannelModel>> channelResponse(
             @Header("Authorization") String authToken,
             @Query("channel_id") int channelId,
             @Query("user_id") int userId,

@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         // Call<Post> call = jsonPlaceHolderApi.createPost(post);
 
         // Way 2
-         Call<ChannelModel> call = jsonPlaceHolderApi.channelResponse("pZby6lsJWryBO8X2MTrT6gtt",180,530, 406, true,1);
+         Call<List<ChannelModel>> call = jsonPlaceHolderApi.channelResponse("Token token=pZby6lsJWryBO8X2MTrT6gtt",180,530, 406, true,1);
 
         // Way 3
         /*Map<String, String> fields = new HashMap<>();
@@ -210,9 +210,9 @@ public class MainActivity extends AppCompatActivity {
         fields.put("title","new Title");
         Call<Post> call = jsonPlaceHolderApi.createPost(fields);*/
 
-        call.enqueue(new Callback<ChannelModel>() {
+        call.enqueue(new Callback<List<ChannelModel>>() {
             @Override
-            public void onResponse(Call<ChannelModel> call, Response<ChannelModel> response) {
+            public void onResponse(Call<List<ChannelModel>> call, Response<List<ChannelModel>> response) {
                 System.out.println(call.request().url());
 
                 if(!response.isSuccessful()){
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                ChannelModel postResponse = response.body();
+                List<ChannelModel> postResponse = response.body();
 
                 /*String content = "";
                 content += "Code: " + response.code() + "\n";
@@ -229,11 +229,15 @@ public class MainActivity extends AppCompatActivity {
                 content += "Title: " + postResponse.getTitle() + "\n";
                 content += "Text: " + postResponse.getText() + "\n";*/
 
+                assert postResponse != null;
                 textViewResult.append(postResponse.toString());
+
+                assert response.body() != null;
+                System.out.println(response.body().toString());
             }
 
             @Override
-            public void onFailure(Call<ChannelModel> call, Throwable t) {
+            public void onFailure(Call<List<ChannelModel>> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
